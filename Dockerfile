@@ -1,4 +1,4 @@
-FROM node:16.9.0-alipne
+FROM node
 RUN apk add --update nodejs npm
 WORKDIR /app
 COPY package.json index.js /app/
