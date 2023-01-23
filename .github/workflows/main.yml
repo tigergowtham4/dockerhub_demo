@@ -1,0 +1,22 @@
+name: Docker Build
+
+on:
+  
+  push:
+   branches: [master]
+ 
+ pull_request:
+   branches: [master]
+ jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run a multi line script
+      run: |
+      
+        docker build -t app .
+        docker login -u gowthamnadambaram -p dckr_pat_5IbbtGagu214ztPoWG8bwN_gRno
+        docker tag app gowthamnadambaram/sample
+        docker push gowthamnadambaram/sample
+        
