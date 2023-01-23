@@ -7,11 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}   
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Run a multi line script
       run: |
       
         docker build -t app .
-        docker login -u gowthamnadambaram -p dckr_pat_5IbbtGagu214ztPoWG8bwN_gRno
         docker tag app gowthamnadambaram/sample
         docker push gowthamnadambaram/sample
         
